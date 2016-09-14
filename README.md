@@ -1,2 +1,4 @@
-# fuel-plugin-unity
-Fuel plug for Unity Cinder driver
+fuel-plugin-unity
+============
+
+Plugin description
