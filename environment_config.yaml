@@ -1,7 +1,94 @@
 attributes:
-  fuel-plugin-unity_text:
-    value: 'Set default value'
-    label: 'Text field'
-    description: 'Description for text field'
+  metadata:
+    group: 'storage'
+    restrictions:
+      - condition: "cluster:status == 'operational'"
+        action: "none"
+        message: |
+          WARNING: Still in EXPERIMENTAL mode.
+          INFO: HOT PLUG is fully supported.
+
+  storage_protocol:
+    value: 'iSCSI'
+    values:
+        - data: 'iSCSI'
+          label: 'iSCSI'
+          description: ''
+        - data: 'FC'
+          label: 'FC'
+          description: ''
+    label: 'Storage Protocol'
+    description: 'Protocol for transferring data.'
     weight: 25
-    type: "text"
+    type: 'radio'
+
+  san_ip:
+    value: ''
+    label: 'Management IP'
+    description: 'Management IP for Unity'
+    weight: 26
+    type: 'text'
+
+  san_login:
+    value: ''
+    label: 'Username'
+    description: 'User account for accessing Unity.'
+    weight: 26
+    type: 'text'
+
+  san_password:
+    value: ''
+    label: 'Password'
+    description: 'Password for accessing Unity.'
+    weight: 26
+    type: 'password'
+
+  manage_all_pool:
+    value: 'Yes'
+    label: 'Manange all pools'
+    description: 'Whether to manage all pools.'
+    weight: 27
+    type: 'select'
+    values:
+      - data: 'Yes'
+        label: 'Yes'
+      - data: 'No'
+        label: 'No'
+
+  storage_pool_names:
+    value: ''
+    label: 'Storage pool(s)'
+    description: 'Comma separated pool name(s) to be managed.'
+    weight: 26
+    type: 'text'
+    restrictions:
+      - condition: "settings:fuel-plugin-unity.manage_all_pool.value == 'No'"
+        action: 'hide'
+
+  volume_driver:
+    value: 'cinder.volume.drivers.emc.emc_unity.EMCUnityDriver'
+    label: 'volume_driver'
+    description: 'Unity driver name.'
+    weight: 27
+    type: 'text'
+
+  volume_backend_name:
+    value: 'emc-unity'
+    label: 'Backend name for this configuration'
+    description: 'Backend name for this configuration.'
+    weight: 28
+    type: 'text'
+
+  use_multipath_for_image_xfer:
+    value: true
+    label: 'Multipath for Image Transfer'
+    description: 'Use multipath for image transfer.'
+    weight: 65
+    type: 'checkbox'
+
+  multipath_nova:
+    value: true
+    label: 'Multipath for Nova and Unity'
+    description: 'Multipath for Nova and Unity'
+    weight: 67
+    type: 'checkbox'

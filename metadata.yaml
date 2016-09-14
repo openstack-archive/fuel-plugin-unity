@@ -1,32 +1,28 @@
 # Plugin name
 name: fuel-plugin-unity
 # Human-readable name for your plugin
-title: Title for fuel-plugin-unity plugin
+title: Unity fuel plugin for Cinder
 # Plugin version
 version: '1.0.0'
 # Description
-description: Please describe your plugin here
+description: Enables Unity as fuel Cinder backend
 # Required fuel version
-fuel_version: ['7.0', '8.0']
+fuel_version: ['7.0']
 # Specify license of your plugin
 licenses: ['Apache License Version 2.0']
 # Specify author or company name
-authors: ['Specify author or company name']
+authors: ['EMC', 'Peter Wang']
 # A link to the plugin's page
-homepage: 'https://github.com/stackforge/fuel-plugins'
+homepage: 'https://github.com/MRS-PartnerEcosystem/fuel-plugin-unity'
 # Specify a group which your plugin implements, possible options:
 # network, storage, storage::cinder, storage::glance, hypervisor
-groups: []
-
+groups: ['storage::cinder']
+# Can be enabled after fuel installation
+is_hotpluggable: true
 # The plugin is compatible with releases in the list
 releases:
   - os: ubuntu
     version: 2015.1.0-7.0
-    mode: ['ha']
-    deployment_scripts_path: deployment_scripts/
-    repository_path: repositories/ubuntu
-  - os: ubuntu
-    version: liberty-8.0
     mode: ['ha']
     deployment_scripts_path: deployment_scripts/
     repository_path: repositories/ubuntu
