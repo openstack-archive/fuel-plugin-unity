@@ -31,7 +31,7 @@ class plugin_unity::common {
     require    => Package[$plugin_emc_vnx::params::multipath_package_name],
   }
 
-  # Provide EMC storage multipath configuration file
+  # Provide multipath configuration file EMC storage
   # TODO(peter) append if no EMC content?
   file {'multipath.conf':
     path    => '/etc/multipath.conf',

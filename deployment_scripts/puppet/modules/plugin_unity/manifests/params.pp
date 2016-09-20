@@ -2,9 +2,11 @@
 class plugin_unity::params {
 
   $volume_driver         = 'cinder.volume.drivers.emc.emc_unity.EMCUnityDriver'
-  $storage_protocl       = 'iSCSI'
+  $storage_protocol       = 'iSCSI'
   # TODO(peter) wording `emc` is proper?
   $volume_backend_name   = 'emc_unity'
+  $cinder_hash = $::fuel_settings['cinder']
+  $storage_hash = $::fuel_settings['storage']
 
   case $::osfamily {
     'Debian': {
@@ -22,6 +24,16 @@ class plugin_unity::params {
     default: {
       fail("unsuported osfamily ${::osfamily}, \
       currently Debian and Redhat family are the only supported platforms")
+    }
+
+    # Add support for coexistence for lvm/ceph
+
+    if ($storage_hash['volumes_lvm']) {
+      $backends = 'cinder_lvm'
+      $backend_class = 'plugin_unity::backend::lvm'
+    } elsif ($storage_hash['volume_ceph']) {
+      $backends = 'cinder_ceph'
+      $backend_class = 'plugin_cinder_netapp::backend::ceph'
     }
   }
 
