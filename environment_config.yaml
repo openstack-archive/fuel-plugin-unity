@@ -5,8 +5,28 @@ attributes:
       - condition: "cluster:status == 'operational'"
         action: "none"
         message: |
-          WARNING: Still in EXPERIMENTAL mode.
           INFO: HOT PLUG is fully supported.
+
+  san_ip:
+    value: ''
+    label: 'Management IP'
+    description: 'Management IP of Unity'
+    weight: 25
+    type: 'text'
+
+  san_login:
+    value: ''
+    label: 'Username'
+    description: 'User account for accessing Unity.'
+    weight: 30
+    type: 'text'
+
+  san_password:
+    value: ''
+    label: 'Password'
+    description: 'Password for accessing Unity.'
+    weight: 35
+    type: 'password'
 
   storage_protocol:
     value: 'iSCSI'
@@ -19,35 +39,14 @@ attributes:
           description: ''
     label: 'Storage Protocol'
     description: 'Protocol for transferring data.'
-    weight: 25
+    weight: 40
     type: 'radio'
-
-  san_ip:
-    value: ''
-    label: 'Management IP'
-    description: 'Management IP for Unity'
-    weight: 26
-    type: 'text'
-
-  san_login:
-    value: ''
-    label: 'Username'
-    description: 'User account for accessing Unity.'
-    weight: 26
-    type: 'text'
-
-  san_password:
-    value: ''
-    label: 'Password'
-    description: 'Password for accessing Unity.'
-    weight: 26
-    type: 'password'
 
   manage_all_pool:
     value: 'Yes'
     label: 'Manange all pools'
     description: 'Whether to manage all pools.'
-    weight: 27
+    weight: 45
     type: 'select'
     values:
       - data: 'Yes'
@@ -59,24 +58,25 @@ attributes:
     value: ''
     label: 'Storage pool(s)'
     description: 'Comma separated pool name(s) to be managed.'
-    weight: 26
+    weight: 50
     type: 'text'
     restrictions:
-      - condition: "settings:fuel-plugin-unity.manage_all_pool.value == 'No'"
+      - condition: "settings:fuel-plugin-unity.manage_all_pool.value == 'Yes'"
         action: 'hide'
 
   volume_driver:
     value: 'cinder.volume.drivers.emc.emc_unity.EMCUnityDriver'
     label: 'volume_driver'
-    description: 'Unity driver name.'
-    weight: 27
+    description: >
+      Unity driver name(Do *NOT* change it unless you know what you are doing).
+    weight: 55
     type: 'text'
 
   volume_backend_name:
     value: 'emc-unity'
     label: 'Backend name for this configuration'
     description: 'Backend name for this configuration.'
-    weight: 28
+    weight: 60
     type: 'text'
 
   use_multipath_for_image_xfer:
@@ -86,11 +86,11 @@ attributes:
     weight: 65
     type: 'checkbox'
 
-  iscsi_use_multipath :
+  iscsi_use_multipath:
     value: true
     label: 'Use multipath connection of volume'
     description: 'Multipath for Nova and Unity'
-    weight: 67
+    weight: 70
     type: 'checkbox'
 
   max_over_subscription_ratio:
@@ -101,5 +101,5 @@ attributes:
       when thin provisioning is involved. Default ratio is
       20.0, meaning provisioned capacity can be 20 times of
       the total physical capacity.
-    weight: 68
+    weight: 75
     type: 'text'
