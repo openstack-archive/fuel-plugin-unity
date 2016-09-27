@@ -61,7 +61,7 @@ attributes:
     weight: 50
     type: 'text'
     restrictions:
-      - condition: "settings:fuel-plugin-unity.manage_all_pool.value == 'Yes'"
+      - condition: "settings:cinder-unity.manage_all_pool.value == 'Yes'"
         action: 'hide'
 
   volume_driver:
