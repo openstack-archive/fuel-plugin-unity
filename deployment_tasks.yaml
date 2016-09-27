@@ -7,7 +7,7 @@
   required_for: [post_deployment_end]
   requires: [post_deployment_start]
   parameters:
-    puppet_manifest: puppet/manifests/controller.pp
+    puppet_manifest: puppet/manifests/site_controller.pp
     puppet_modules:  "puppet/modules/:/etc/puppet/modules/"
     timeout: 360
 
@@ -17,7 +17,7 @@
   required_for: [post_deployment_end]
   requires: [post_deployment_start]
   parameters:
-    puppet_manifest: puppet/manifests/compute.pp
+    puppet_manifest: puppet/manifests/site_compute.pp
     puppet_modules:  "puppet/modules/:/etc/puppet/modules/"
     timeout: 360
 

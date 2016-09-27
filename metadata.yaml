@@ -11,7 +11,7 @@ fuel_version: ['7.0']
 # Specify license of your plugin
 licenses: ['Apache License Version 2.0']
 # Specify author or company name
-authors: ['EMC', 'Peter Wang']
+authors: ['Peter Wang']
 # A link to the plugin's page
 homepage: 'https://github.com/MRS-PartnerEcosystem/fuel-plugin-unity'
 # Specify a group which your plugin implements, possible options:

@@ -4,7 +4,6 @@
 class plugin_unity::common {
 
   include plugin_unity::params
-  $unity_settings = hiera('unity')
   # Make sure iscsi tools is installed and running
   package { $plugin_unity::params::iscsi_package_name:
     ensure => 'installed'
@@ -31,7 +30,7 @@ class plugin_unity::common {
     require    => Package[$plugin_emc_vnx::params::multipath_package_name],
   }
 
-  # Provide multipath configuration file EMC storage
+  # Provide multipath configuration file for EMC storage
   # TODO(peter) append if no EMC content?
   file {'multipath.conf':
     path    => '/etc/multipath.conf',
@@ -42,5 +41,4 @@ class plugin_unity::common {
     require => Package[$plugin_emc_vnx::params::multipath_package_name],
     notify  => Service[$plugin_emc_vnx::params::multipath_service_name],
   }
-
 }

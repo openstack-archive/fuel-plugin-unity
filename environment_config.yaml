@@ -86,9 +86,9 @@ attributes:
     weight: 65
     type: 'checkbox'
 
-  multipath_nova:
+  iscsi_use_multipath :
     value: true
-    label: 'Multipath for Nova and Unity'
+    label: 'Use multipath connection of volume'
     description: 'Multipath for Nova and Unity'
     weight: 67
     type: 'checkbox'
