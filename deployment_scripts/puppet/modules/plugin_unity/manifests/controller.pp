@@ -40,7 +40,7 @@ class plugin_unity::controller {
     volume_driver => $plugin_unity::params::volume_driver,
     over_subscription => $plugin_unity::params::over_subscription,
     ha_host_name => $plugin_unity::params::ha_host_name,
- }
+  }
 
   #$storage_hash = $::fuel_settings['storage']
 #  cinder_config {
@@ -55,9 +55,13 @@ class plugin_unity::controller {
     setting              => 'enabled_backends',
     subsetting           => $section_name,
     subsetting_separator => ',',
+    notify               => Service[$cinder::params::volume_service],
   }
 
   # Restart cinder volume service
   #Cinder_config<||> ~> Service['cinder_volume']
-  service { $cinder::params::volume_service: }
+  # TODO Need to test on real HA environment
+  service { $cinder::params::volume_service:
+    ensure => 'running',
+  }
 }
