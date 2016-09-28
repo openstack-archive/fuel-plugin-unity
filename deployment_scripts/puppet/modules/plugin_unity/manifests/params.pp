@@ -2,7 +2,7 @@
 class plugin_unity::params {
 
   # TODO(peter) using hiera('unity')?
-  $plugin_unity_settings = $::fuel_setttings['unity']
+  $plugin_unity_settings = hiera('cinder-unity')
 
   $volume_driver         = $plugin_unity_settings['volume_driver']
   $storage_protocol      = $plugin_unity_settings['storage_protocol']
@@ -11,14 +11,16 @@ class plugin_unity::params {
   $san_ip   = $plugin_unity_settings['san_ip']
   $san_login   = $plugin_unity_settings['san_login']
   $san_password   = $plugin_unity_settings['san_password']
-  $volume_driver   = $plugin_unity_settings['volume_driver']
   $multipath_cinder   = $plugin_unity_settings['use_multipath_for_image_xfer']
   $multipath_nova   = $plugin_unity_settings['iscsi_use_multipath']
   $over_subscription   = $plugin_unity_settings['max_over_subscription_ratio']
   # TODO need to figure out what if it's different that lvm/ceph's
   $ha_host_name = 'ha:unity'
-  $cinder_hash = $::fuel_settings['cinder']
-  $storage_hash = $::fuel_settings['storage']
+  #include cinder::params
+  #notice("hello ${::fuel_settings}")
+  #notice("hello ${cinder::params}")
+  #$cinder_hash = $::fuel_settings['cinder']
+  #$storage_hash = $::fuel_settings['storage']
 
   case $::osfamily {
     'Debian': {
@@ -40,12 +42,13 @@ class plugin_unity::params {
       currently Debian and Redhat family are the only supported platforms")
     }
 
-    # Add support for coexistence for lvm/ceph
-    if ($storage_hash['volumes_lvm']) or ($storage_hash['volumes_ceph']) {
-      $backends = ''
-    } else {
-      $backends = $cinder_hash['DEFAULT']['enabled_backends']
-    }
   }
 
+#    # Add support for coexistence for lvm/ceph
+#    if $storage_hash['volumes_lvm'] or $storage_hash['volumes_ceph'] {
+#      $backends = ''
+#    } else {
+#      notify { "$cinder_hash['DEFAULT']": }
+#      $backends = $cinder_hash['DEFAULT']['enabled_backends']
+#    }
 }

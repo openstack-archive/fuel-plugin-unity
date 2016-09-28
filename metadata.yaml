@@ -7,11 +7,11 @@ version: '1.0.0'
 # Description
 description: Enables Unity as fuel Cinder backend
 # Required fuel version
-fuel_version: ['7.0']
+fuel_version: ['7.0', '8.0','9.0']
 # Specify license of your plugin
 licenses: ['Apache License Version 2.0']
 # Specify author or company name
-authors: ['Peter Wang']
+authors: ['DELLEMC']
 # A link to the plugin's page
 homepage: 'https://github.com/MRS-PartnerEcosystem/fuel-plugin-unity'
 # Specify a group which your plugin implements, possible options:
@@ -23,6 +23,11 @@ is_hotpluggable: true
 releases:
   - os: ubuntu
     version: 2015.1.0-7.0
+    mode: ['ha']
+    deployment_scripts_path: deployment_scripts/
+    repository_path: repositories/ubuntu
+  - os: ubuntu
+    version: mitaka-9.0
     mode: ['ha']
     deployment_scripts_path: deployment_scripts/
     repository_path: repositories/ubuntu

@@ -9,25 +9,25 @@ class plugin_unity::common {
     ensure => 'installed'
   }
 
-  service { $plugin_emc_vnx::params::iscsi_service_name:
+  service { $plugin_unity::params::iscsi_service_name:
     ensure     => 'running',
     enable     => true,
     hasrestart => false,
-    require    => $plugin_unity::params::iscsi_package_name,
+    require    => Package[$plugin_unity::params::iscsi_package_name],
   }
 
   # Make sure multipath tools is installed and running
-  package {$pluin_unity::params::multipath_package_name:
+  package {$plugin_unity::params::multipath_package_name:
     ensure => 'installed'
   }
 
-  service {$plugin_emc_vnx::params::multipath_service_name:
+  service {$plugin_unity::params::multipath_service_name:
     ensure     => 'running',
     enable     => true,
     hasrestart => true,
     hasstatus  => false,
     status     => 'pgrep multipathd',
-    require    => Package[$plugin_emc_vnx::params::multipath_package_name],
+    require    => Package[$plugin_unity::params::multipath_package_name],
   }
 
   # Provide multipath configuration file for EMC storage
@@ -37,8 +37,8 @@ class plugin_unity::common {
     mode    => '0644',
     owner   => root,
     group   => root,
-    source  => 'puppet:///modules/plugin_emc_vnx/multipath.conf',
-    require => Package[$plugin_emc_vnx::params::multipath_package_name],
-    notify  => Service[$plugin_emc_vnx::params::multipath_service_name],
+    source  => 'puppet:///modules/plugin_unity/multipath.conf',
+    require => Package[$plugin_unity::params::multipath_package_name],
+    notify  => Service[$plugin_unity::params::multipath_service_name],
   }
 }
