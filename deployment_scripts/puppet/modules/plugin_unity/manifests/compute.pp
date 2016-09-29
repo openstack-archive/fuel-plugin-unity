@@ -16,8 +16,6 @@ class plugin_unity::compute {
   nova_config {
     'libvirt/iscsi_use_multipath': value   =>
     $plugin_unity::params::multipath_nova;
-    'notify': value                        =>
-    Service[$::nova::params::compute_service_name];
   }
   # TODO(peter) Need to figure out why use below statement
   Nova_config<||> ~> Service['nova-compute']
