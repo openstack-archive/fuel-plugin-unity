@@ -30,24 +30,20 @@ class plugin_unity::controller {
   }
 
   plugin_unity::backend::unity { $section_name:
-    san_ip => $plugin_unity::params::san_ip,
-    san_login => $plugin_unity::params::san_login,
-    san_password => $plugin_unity::params::san_password,
-    use_multipath => $plugin_unity::params::multipath_cinder,
+    san_ip              => $plugin_unity::params::san_ip,
+    san_login           => $plugin_unity::params::san_login,
+    san_password        => $plugin_unity::params::san_password,
+    use_multipath       => $plugin_unity::params::multipath_cinder,
     volume_backend_name => $plugin_unity::params::volume_backend_name,
-    storage_pool_names => $plugin_unity::params::storage_pool_names,
-    storage_protocol => $plugin_unity::params::storage_protocol,
-    volume_driver => $plugin_unity::params::volume_driver,
-    over_subscription => $plugin_unity::params::over_subscription,
-    ha_host_name => $plugin_unity::params::ha_host_name,
+    storage_pool_names  => $plugin_unity::params::storage_pool_names,
+    storage_protocol    => $plugin_unity::params::storage_protocol,
+    volume_driver       => $plugin_unity::params::volume_driver,
+    over_subscription   => $plugin_unity::params::over_subscription,
+    ha_host_name        => $plugin_unity::params::ha_host_name,
   }
 
-  #$storage_hash = $::fuel_settings['storage']
-#  cinder_config {
-#    'DEFAULT/enabled_backends': value =>
-#    "${plugin_unity::params::backends},${section_name}",
-#  }
-    ini_subsetting {"enable_${section_name}_backend":
+  # Insert `enabled_backends`
+  ini_subsetting {"enable_${section_name}_backend":
     ensure               => present,
     section              => 'DEFAULT',
     key_val_separator    => '=',

@@ -1,5 +1,4 @@
 # Entry class for unity plugin
-class plugin_unity (
-) inherits plugin_unity::params {
+class plugin_unity {
   notice('We should not run this for now.')
 }
