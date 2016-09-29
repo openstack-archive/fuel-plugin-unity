@@ -1589,7 +1589,8 @@ class EMCUnityDriver(san.SanDriver):
         return self.helper.terminate_connection(volume, connector)
 
     def get_volume_stats(self, refresh=False):
-        return self.helper.get_volume_stats(refresh)
+        #return self.helper.get_volume_stats(refresh)
+        pass
 
     def update_volume_stats(self):
         #return self.helper.update_volume_stats()
