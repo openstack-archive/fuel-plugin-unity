@@ -20,6 +20,10 @@ class plugin_unity::controller {
     ensure => 'installed',
   }
 
+  # TODO Need to test on real HA environment
+  # Define the order of driver configuration.
+  File<| name == 'emc_unity.py' |> ~> Cinder_config<||> ~>
+  Service[$cinder::params::volume_service]
   # Copy unity driver file to cinder node
   file { 'emc_unity.py':
     path   =>
@@ -55,10 +59,8 @@ class plugin_unity::controller {
     notify               => Service[$cinder::params::volume_service],
   }
 
-  # Restart cinder volume service
-  #Cinder_config<||> ~> Service['cinder_volume']
-  # TODO Need to test on real HA environment
   service { $cinder::params::volume_service:
     ensure => 'running',
   }
+
 }

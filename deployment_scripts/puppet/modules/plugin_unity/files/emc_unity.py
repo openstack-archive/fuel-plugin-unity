@@ -1520,7 +1520,7 @@ class EMCUnityDriver(san.SanDriver):
 
     def __init__(self, *args, **kwargs):
         super(EMCUnityDriver, self).__init__(*args, **kwargs)
-        #self.helper = EMCUnityHelper(self.configuration)
+        self.helper = EMCUnityHelper(self.configuration)
 
     def check_for_setup_error(self):
         pass
@@ -1589,12 +1589,10 @@ class EMCUnityDriver(san.SanDriver):
         return self.helper.terminate_connection(volume, connector)
 
     def get_volume_stats(self, refresh=False):
-        #return self.helper.get_volume_stats(refresh)
-        pass
+        return self.helper.get_volume_stats(refresh)
 
     def update_volume_stats(self):
-        #return self.helper.update_volume_stats()
-        pass
+        return self.helper.update_volume_stats()
 
     def manage_existing_get_size(self, volume, existing_ref):
         """Return size of volume to be managed by manage_existing."""
