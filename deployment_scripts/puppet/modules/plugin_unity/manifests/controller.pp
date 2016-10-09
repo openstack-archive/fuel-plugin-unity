@@ -7,7 +7,7 @@ class plugin_unity::controller {
 
   $plugin_settings = hiera('cinder-unity')
   $section_name = 'unity'
-  # Install cinder-volume if not present
+  # Install cinder-volume package if not present
   if $::cinder::params::volume_package {
     package { $::cinder::params::volume_package:
       ensure => 'installed',
@@ -15,6 +15,7 @@ class plugin_unity::controller {
     Package[$::cinder::params::volume_package] -> Cinder_config<||>
   }
 
+  # TODO(peter) not necessary for Unity driver, to be removed.
   package { $plugin_unity::params::naviseccli_package_name:
     ensure => 'installed',
   }
