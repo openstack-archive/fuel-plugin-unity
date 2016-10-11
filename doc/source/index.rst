@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to fuel-plugin-unity's documentation!
+Documentation for Unity Fuel lugin
 =============================================
 
 Contents:
@@ -11,12 +11,8 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
-
+   release-notes.rst
+   introduction.rst
+   installation.rst
+   user-guide.rst
+   appendix.rst
