@@ -25,7 +25,7 @@ Install and Configure
 #. Create a volume type with extra spec *volume_backend_name*, set value to
    *emc-unity*
 
-     .. image:: images/unity-extra-spec.png
+     .. image:: images/unity-extra-specs.png
 
 #. Create a volume with above created type, make sure volume is *available*.
 
