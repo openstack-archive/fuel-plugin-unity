@@ -15,12 +15,7 @@ class plugin_unity::controller {
     Package[$::cinder::params::volume_package] -> Cinder_config<||>
   }
 
-  # TODO(peter) not necessary for Unity driver, to be removed.
-  package { $plugin_unity::params::naviseccli_package_name:
-    ensure => 'installed',
-  }
 
-  # TODO Need to test on real HA environment
   # Define the order of driver configuration.
   File<| name == 'emc_unity.py' |> ~> Cinder_config<||> ~>
   Service[$cinder::params::volume_service]
@@ -38,7 +33,7 @@ class plugin_unity::controller {
     san_ip              => $plugin_unity::params::san_ip,
     san_login           => $plugin_unity::params::san_login,
     san_password        => $plugin_unity::params::san_password,
-    use_multipath       => $plugin_unity::params::multipath_cinder,
+    use_multipath       => $plugin_unity::params::use_multipath,
     volume_backend_name => $plugin_unity::params::volume_backend_name,
     storage_pool_names  => $plugin_unity::params::storage_pool_names,
     storage_protocol    => $plugin_unity::params::storage_protocol,

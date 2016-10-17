@@ -85,13 +85,14 @@ This plugin configures Unity storage for Cinder using multi-backend feature.
 
 # Contributions
 
-# FAQ
-
-* What's process of plugin deployment with fuel?
-
-* Cannot see plugin pages in my environment?
+This is a standard OpenStack project, please refe to [How To
+Contribute](https://wiki.openstack.org/wiki/How_To_Contribute).
 
 # Bugs, requests, questions
+
+Please use the [Launchpad project site](
+https://launchpad.net/fuel-plugin-unity) to report bugs, request features,
+ask questions, etc.
 
 # License
 

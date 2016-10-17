@@ -37,14 +37,17 @@ FAQ
 ---
 
 #. Failed to create/attach volume.
+
    Please inspect *cinder-volume.log* on controller node from mode detailed
    information.
 
 #. Volume is not created on EMC Unity array.
+
    Double check extra specs for the emc volume type. Refer to
    above steps for details.
 
 #. How can I Manage more than one Unity array in one OpenStack deployment.
+
    Due to the limitation of Fuel Web UI framework, Plugin can hardly define a
    approach to configure multiple Unity array in one time.
    To do this, User has to append new Unity array configuration to existing
@@ -52,7 +55,8 @@ FAQ
    controller nodes.
 
 #. Cannot see plugin pages in Fuel Web UI.
-   This is a limitation of Fuel:user cannot enable new plugin for a existing
-   OpenStack deployment. User need to install the Unity plugin before creating new
-   OpenStack deployment.
+
+   This is a limitation of Fuel: user cannot enable new plugin for a existing
+   OpenStack deployment. User need to install the Unity plugin before creating
+   new OpenStack deployment.
 

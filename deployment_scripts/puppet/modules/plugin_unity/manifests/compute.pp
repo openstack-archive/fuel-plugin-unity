@@ -15,7 +15,7 @@ class plugin_unity::compute {
 
   nova_config {
     'libvirt/iscsi_use_multipath': value   =>
-    $plugin_unity::params::multipath_nova;
+    $plugin_unity::params::use_multipath;
   }
   # Make sure any config is set before restart nova-compute
   Nova_config<||> ~> Service['nova-compute']

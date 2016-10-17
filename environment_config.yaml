@@ -79,13 +79,6 @@ attributes:
     weight: 60
     type: 'text'
 
-  use_multipath_for_image_xfer:
-    value: true
-    label: 'Multipath for Image Transfer'
-    description: 'Use multipath for image transfer.'
-    weight: 65
-    type: 'checkbox'
-
   iscsi_use_multipath:
     value: true
     label: 'Use multipath connection of volume'

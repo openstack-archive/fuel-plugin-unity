@@ -15,8 +15,7 @@ class plugin_unity::params {
   $san_ip              = $plugin_unity_settings['san_ip']
   $san_login           = $plugin_unity_settings['san_login']
   $san_password        = $plugin_unity_settings['san_password']
-  $multipath_cinder    = $plugin_unity_settings['use_multipath_for_image_xfer']
-  $multipath_nova      = $plugin_unity_settings['iscsi_use_multipath']
+  $use_multipath       = $plugin_unity_settings['use_multipath']
   $over_subscription   = $plugin_unity_settings['max_over_subscription_ratio']
   # TODO need to figure out what if it's different that lvm/ceph's
   $ha_host_name = 'ha:unity'
@@ -26,7 +25,6 @@ class plugin_unity::params {
       $iscsi_package_name      = 'open-iscsi'
       $iscsi_service_name      = 'open-iscsi'
       $multipath_package_name  = 'multipath-tools'
-      $multipath_service_name  = 'multipath-tools'
       $naviseccli_package_name = 'navicli-linux-64-x86-en-us'
     }
     'RedHat': {
@@ -34,7 +32,6 @@ class plugin_unity::params {
       $iscsi_service_name      = false
       $multipath_package_name  = 'device-mapper-multipath'
       $multipath_service_name  = 'multipathd'
-      $naviseccli_package_name = 'NaviCLI-Linux-64-x86-en_US'
     }
     default: {
       fail("unsuported osfamily ${::osfamily}, \

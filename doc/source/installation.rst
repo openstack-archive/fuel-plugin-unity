@@ -60,5 +60,5 @@ Fuel Master node, you can configure the nodes and set the parameters for the plu
 
 
 .. note:: It may take an hour or more for the OpenStack deployment
-          to complete, depending on your hardware configuration. 
+          to complete, depending on your hardware configuration.
 
