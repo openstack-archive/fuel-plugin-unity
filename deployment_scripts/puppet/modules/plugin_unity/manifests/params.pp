@@ -6,7 +6,7 @@ class plugin_unity::params {
   $volume_driver         = $plugin_unity_settings['volume_driver']
   $storage_protocol      = $plugin_unity_settings['storage_protocol']
   if $plugin_unity_settings['manage_all_pool'] == 'Yes' {
-    $storage_pool_names    = false
+    $storage_pool_names    = undef
   } else {
     $storage_pool_names    = $plugin_unity_settings['storage_pool_names']
   }
@@ -25,7 +25,7 @@ class plugin_unity::params {
       $iscsi_package_name      = 'open-iscsi'
       $iscsi_service_name      = 'open-iscsi'
       $multipath_package_name  = 'multipath-tools'
-      $naviseccli_package_name = 'navicli-linux-64-x86-en-us'
+      $multipath_service_name  = 'multipath-tools'
     }
     'RedHat': {
       $iscsi_package_name      = 'iscsi-initiator-utils'

@@ -6,7 +6,7 @@ define plugin_unity::backend::unity (
   $san_password,
   $use_multipath       = 'True',
   $volume_backend_name = 'unity',
-  $storage_pool_names  = '',
+  $storage_pool_names  = undef,
   $storage_protocol    = 'iSCSI',
   $volume_driver       = 'cinder.volume.drivers.emc.emc_unity.EMCUnityDriver',
   $over_subscription   = '20.0',
