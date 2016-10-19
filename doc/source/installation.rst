@@ -43,12 +43,12 @@ Fuel Master node, you can configure the nodes and set the parameters for the plu
 #. `Configure your environment <https://docs.mirantis.com/openstack/fuel/fuel-7.0/user-guide.html#configure-your-environment>`_. according to your requirements.
 
 
-#. Open the **Settings tab** of the Fuel web UI and click *Unity fuel plugin for Cinder*.
+#. Open the **Settings**  tab of the Fuel web UI and click *Unity fuel plugin for Cinder*.
    Select the Fuel plugin checkbox to enable Unity plugin:
 
-     .. image:: images/unity-plugin-settings.png
+   .. image:: images/unity-plugin-settings.png
 
-   .. note:: Please refer to `Unity Cinder driver <https://github.com/emc-openstack/unity-cinder-driver>`_ for more information.
+   .. note:: Please refer to `Unity Cinder driver <https://github.com/emc-openstack/unity-cinder-driver>`_ for each option.
 
 
 #. You can run the network verification check and

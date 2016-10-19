@@ -22,6 +22,8 @@ Install and Configure
 
    .. note:: Make sure *State* of *cinder-volume*  with name *ha:unity@unity* is *up*
 
+.. _create-extra-specs:
+
 #. Create a volume type with extra spec *volume_backend_name*, set value to
    *emc-unity*
 
@@ -44,15 +46,13 @@ FAQ
 #. Volume is not created on EMC Unity array.
 
    Double check extra specs for the emc volume type. Refer to
-   above steps for details.
+   above step :ref:`Create extra specs <create-extra-specs>` for details.
 
 #. How can I Manage more than one Unity array in one OpenStack deployment.
 
-   Due to the limitation of Fuel Web UI framework, Plugin can hardly define a
+   Due to the limitation of Fuel Web UI framework, plugin can hardly define a
    approach to configure multiple Unity array in one time.
-   To do this, User has to append new Unity array configuration to existing
-   */etc/cinder/cinder.conf* and restart *cinder-volume* service on all
-   controller nodes.
+   See :ref:`Add multiple Unity <add-multiple-unity>` for more details.
 
 #. Cannot see plugin pages in Fuel Web UI.
 
