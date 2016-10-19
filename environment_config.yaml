@@ -79,7 +79,7 @@ attributes:
     weight: 60
     type: 'text'
 
-  iscsi_use_multipath:
+  use_multipath:
     value: true
     label: 'Use multipath connection of volume'
     description: 'Multipath for Nova and Unity'
