@@ -23,17 +23,17 @@ is_hotpluggable: true
 releases:
   - os: ubuntu
     version: 2015.1.0-7.0
-    mode: ['ha']
+    mode: ['ha', 'multinode']
     deployment_scripts_path: deployment_scripts/
     repository_path: repositories/ubuntu
   - os: ubuntu
     version: liberty-8.0
-    mode: ['ha']
+    mode: ['ha', 'multinode']
     deployment_scripts_path: deployment_scripts/
     repository_path: repositories/ubuntu
   - os: ubuntu
     version: mitaka-9.0
-    mode: ['ha']
+    mode: ['ha', 'multinode']
     deployment_scripts_path: deployment_scripts/
     repository_path: repositories/ubuntu
 
