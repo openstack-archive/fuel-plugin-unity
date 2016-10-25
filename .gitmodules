@@ -1,0 +1,4 @@
+[submodule "fuel-qa"]
+	path = fuel-qa
+	url = https://github.com/openstack/fuel-qa
+	branch = stable/mitaka
