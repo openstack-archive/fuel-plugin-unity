@@ -21,12 +21,12 @@ from fuelweb_test.helpers.decorators import log_snapshot_after_test
 from fuelweb_test.helpers import checkers
 from fuelweb_test.helpers import utils
 from fuelweb_test.settings import DEPLOYMENT_MODE
-from fuelweb_test.settings import EXAMPLE_PLUGIN_PATH
 from fuelweb_test.settings import NEUTRON_SEGMENT
 from fuelweb_test.tests.base_test_case import SetupEnvironment
 from fuelweb_test.tests.base_test_case import TestBasic
 
 from fuelweb_test import unity_settings
+
 
 @test(groups=["fuel_plugins", "fuel_plugin_unity"])
 class UnityPlugin(TestBasic):
@@ -55,7 +55,7 @@ class UnityPlugin(TestBasic):
         """
         checkers.check_plugin_path_env(
             var_name='UNITY_PLUGIN_PATH',
-            plugin_path=EXAMPLE_PLUGIN_PATH
+            plugin_path=unity_settings.UNITY_PLUGIN_PATH
         )
 
         self.env.revert_snapshot("ready_with_3_slaves")

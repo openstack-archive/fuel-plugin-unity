@@ -1,0 +1,4 @@
+[submodule "fuel-qa"]
+	path = plugin_test/fuel-qa
+	url = https://github.com/openstack/fuel-qa
+	branch = stable/mitaka
