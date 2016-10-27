@@ -10,6 +10,11 @@ export UNITY_PLUGIN_PATH="/home/jenkins/cinder-unity-1.0-1.0.0-1.noarch.rpm"
 
 export TEST_GROUP="fuel_plugin_unity"
 export ISO_PATH="/home/jenkins/fuel-9.0.iso"
+
+# init submodule
+
+git submodule init
+git submodule update
 # copy plugin functional tests to fuel-qa submodule
 cp -v unity_settings.py fuel-qa/fuelweb_test/
 
