@@ -124,7 +124,6 @@ class UnityPlugin(TestBasic):
                 "net_provider": 'neutron',
                 "net_segment_type": segment_type,
                 "propagate_task_deploy": True,
-                "osd_pool_size": 2,
             }
         )
 
@@ -146,7 +145,10 @@ class UnityPlugin(TestBasic):
                 'slave-05': ['ceph-osd'],
             }
         )
-
+        # set ceph replica to 2
+        attr = dict()
+        attr['editable']['storage']['osd_pool_size'] = 2
+        self.fuel_web.client.update_cluster_attributes(cluster_id, attr)
         self.fuel_web.deploy_cluster_wait(cluster_id)
 
         self.fuel_web.verify_network(cluster_id)
@@ -248,6 +250,7 @@ class UnityPlugin(TestBasic):
         logger.debug("Start to check service on node {0}".format('slave-01'))
         cmd = 'pgrep -f cinder-volume'
 
+        # Check Cinder and Nova config
         with self.fuel_web.get_ssh_for_node("slave-01") as remote:
             verify_cinder_opts(remote, options)
             res_pgrep = remote.execute(cmd)
@@ -255,7 +258,6 @@ class UnityPlugin(TestBasic):
                          'Failed with error {0}'.format(res_pgrep['stderr']))
             assert_equal(2, len(res_pgrep['stdout']),
                          'Failed with error {0}'.format(res_pgrep['stderr']))
-        # Check Cinder and Nova config
 
         with self.fuel_web.get_ssh_for_node('slave-02') as controller2:
             result = controller2.open('/etc/cinder/cinder.conf')
