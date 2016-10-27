@@ -24,3 +24,5 @@ UNITY_VOLUME_DRIVER = os.environ.get(
     'cinder.volume.drivers.emc.emc_unity.EMCUnityDriver')
 # backend's name
 UNITY_VOLUME_BACKEND_NAME = os.environ.get('UNITY_VOLUME_BACKEND_NAME')
+
+UNITY_USE_MULTIPATH = os.environ.get('UNITY_USE_MULTIPATH', 'True')

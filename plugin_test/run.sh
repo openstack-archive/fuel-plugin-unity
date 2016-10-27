@@ -1,13 +1,19 @@
-#!/bin/bash
 
+#!/bin/bash
+export VENV_PATH="/home/jenkins/venv-nailgun-tests-2.9"
 # copy plugin functional tests to fuel-qa submodule
-export UNITY_SAN_IP=10.244.223.61
-export UNITY_VOLUME_BACKNED_NAME=unity-test
+export UNITY_SAN_IP="10.244.223.61"
+export UNITY_SAN_LOGIN="admin"
+export UNITY_SAN_PASSWORD="Password123!"
+export UNITY_VOLUME_BACKEND_NAME="unity-test"
+export UNITY_PLUGIN_PATH="/home/jenkins/cinder-unity-1.0-1.0.0-1.noarch.rpm"
+
+export TEST_GROUP="fuel_plugin_unity"
+export ISO_PATH="/home/jenkins/fuel-9.0.iso"
+# copy plugin functional tests to fuel-qa submodule
 cp -v unity_settings.py fuel-qa/fuelweb_test/
 
 cp -rv tests/ fuel-qa/fuelweb_test/
 
-cd fuel-qa
-
-# TODO run tests
+fuel-qa/utils/jenkins/system_tests.sh -k -K -w $PWD/fuel-qa -j plugins -i $ISO_PATH -o --group=${TEST_GROUP}
 

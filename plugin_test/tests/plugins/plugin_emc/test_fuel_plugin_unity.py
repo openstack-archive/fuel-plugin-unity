@@ -58,7 +58,7 @@ class UnityPlugin(TestBasic):
             plugin_path=unity_settings.UNITY_PLUGIN_PATH
         )
 
-        self.env.revert_snapshot("ready_with_3_slaves")
+        self.env.revert_snapshot("ready_with_5_slaves")
 
         # copy plugin to the master node
         checkers.check_archive_type(unity_settings.UNITY_PLUGIN_PATH)
@@ -94,7 +94,7 @@ class UnityPlugin(TestBasic):
             'metadata/enabled': True,
             'san_ip': unity_settings.UNITY_SAN_IP,
             'san_login': unity_settings.UNITY_SAN_LOGIN,
-            'san_passowrd': unity_settings.UNITY_SAN_PASSWORD,
+            'san_password': unity_settings.UNITY_SAN_PASSWORD,
             'storage_protocol': unity_settings.UNITY_STORAGE_PROTOCOL,
             'volume_driver': unity_settings.UNITY_VOLUME_DRIVER,
             'volume_backend_name': unity_settings.UNITY_VOLUME_BACKEND_NAME,
