@@ -60,13 +60,13 @@ def verify_cinder_opts(cinder_node, options):
 
 
 def verify_nova_opts(nova_node, options):
-    result = nova_node.open('/etc/cinder/cinder.conf')
+    result = nova_node.open('/etc/nova/nova.conf')
     conf_for_check = utils.get_ini_config(result)
     use_multipath = options['use_multipath']
     utils.check_config(conf_for_check,
-                       '/etc/cinder/cinder.conf',
-                       'unity',
-                       'use_multipath',
+                       '/etc/nova/nova.conf',
+                       'libvirt',
+                       'iscsi_use_multipath',
                        use_multipath)
 
 
@@ -124,6 +124,9 @@ class UnityPlugin(TestBasic):
                 "net_provider": 'neutron',
                 "net_segment_type": segment_type,
                 "propagate_task_deploy": True,
+                "volumes_ceph": True,
+                "images_ceph": True,
+                "volumes_lvm": False,
             }
         )
 
@@ -173,7 +176,7 @@ class UnityPlugin(TestBasic):
 
         self.env.make_snapshot("deploy_ha_2_controller")
 
-    @test(depends_on=[SetupEnvironment.prepare_slaves_4],
+    @test(depends_on=[SetupEnvironment.prepare_slaves_5],
           groups=["deploy_ha_unity"])
     @log_snapshot_after_test
     def deploy_ha_lvm_cinder(self):
@@ -185,7 +188,7 @@ class UnityPlugin(TestBasic):
             3. Create cluster
             4. Add 2 nodes with controller role
             5. Add 1 node with compute role
-            5. Add 1 node with cinder role
+            5. Add 2 nodes with cinder role
             6. Deploy the cluster
             7. Run network verification
             8. Check plugin health
@@ -199,7 +202,7 @@ class UnityPlugin(TestBasic):
             plugin_path=unity_settings.UNITY_PLUGIN_PATH
         )
 
-        self.env.revert_snapshot("ready_with_4_slaves")
+        self.env.revert_snapshot("ready_with_5_slaves")
 
         # copy plugin to the master node
         checkers.check_archive_type(unity_settings.UNITY_PLUGIN_PATH)
@@ -241,6 +244,8 @@ class UnityPlugin(TestBasic):
                 'slave-01': ['controller'],
                 'slave-02': ['controller'],
                 'slave-03': ['compute'],
+                'slave-04': ['cinder'],
+                'slave-05': ['cinder'],
             }
         )
         self.fuel_web.deploy_cluster_wait(cluster_id)
