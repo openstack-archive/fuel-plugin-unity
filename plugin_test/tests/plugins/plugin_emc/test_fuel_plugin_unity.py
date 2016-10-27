@@ -146,9 +146,9 @@ class UnityPlugin(TestBasic):
             }
         )
         # set ceph replica to 2
-        attr = dict()
-        attr['editable']['storage']['osd_pool_size'] = 2
-        self.fuel_web.client.update_cluster_attributes(cluster_id, attr)
+        self.fuel_web.client.update_cluster_attributes(
+            cluster_id,
+            {'editable': {'storage': {'osd_pool_size': 2}}})
         self.fuel_web.deploy_cluster_wait(cluster_id)
 
         self.fuel_web.verify_network(cluster_id)
@@ -173,11 +173,11 @@ class UnityPlugin(TestBasic):
 
         self.env.make_snapshot("deploy_ha_2_controller")
 
-    @test(depends_on=[SetupEnvironment.prepare_slaves_3],
+    @test(depends_on=[SetupEnvironment.prepare_slaves_4],
           groups=["deploy_ha_unity"])
     @log_snapshot_after_test
-    def deploy_ha_no_cinder(self):
-        """Deploy cluster with 2 controllers(w/o cinder nodes) and Unity plugin
+    def deploy_ha_lvm_cinder(self):
+        """Deploy cluster with 2 controllers(lvm cinder nodes) and Unity plugin
 
         Scenario:
             1. Upload plugin to the master node
@@ -185,20 +185,21 @@ class UnityPlugin(TestBasic):
             3. Create cluster
             4. Add 2 nodes with controller role
             5. Add 1 node with compute role
+            5. Add 1 node with cinder role
             6. Deploy the cluster
             7. Run network verification
             8. Check plugin health
             9. Run OSTF
 
         Duration 35m
-        Snapshot deploy_ha_no_cinder
+        Snapshot deploy_ha_lvm_cinder
         """
         checkers.check_plugin_path_env(
             var_name='UNITY_PLUGIN_PATH',
             plugin_path=unity_settings.UNITY_PLUGIN_PATH
         )
 
-        self.env.revert_snapshot("ready_with_3_slaves")
+        self.env.revert_snapshot("ready_with_4_slaves")
 
         # copy plugin to the master node
         checkers.check_archive_type(unity_settings.UNITY_PLUGIN_PATH)
@@ -274,4 +275,4 @@ class UnityPlugin(TestBasic):
         self.fuel_web.run_ostf(
             cluster_id=cluster_id)
 
-        self.env.make_snapshot("deploy_ha_no_cinder")
+        self.env.make_snapshot("deploy_ha_lvm_cinder")
