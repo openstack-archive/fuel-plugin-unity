@@ -55,7 +55,8 @@ def verify_cinder_opts(cinder_node, options):
         utils.check_config(conf_for_check,
                            '/etc/cinder/cinder.conf',
                            'unity',
-                           key,
+                           ('use_multipath_for_image_xfer' if key ==
+                            'use_multipath' else key),
                            value)
 
 
@@ -264,18 +265,6 @@ class UnityPlugin(TestBasic):
                          'Failed with error {0}'.format(res_pgrep['stderr']))
             assert_equal(2, len(res_pgrep['stdout']),
                          'Failed with error {0}'.format(res_pgrep['stderr']))
-
-        with self.fuel_web.get_ssh_for_node('slave-02') as controller2:
-            result = controller2.open('/etc/cinder/cinder.conf')
-            conf_for_check = utils.get_ini_config(result)
-            options.pop('metadata/enabled')
-            expected_options = options.copy()
-            for key, value in expected_options.items():
-                utils.check_config(conf_for_check,
-                                   '/etc/cinder/cinder.conf',
-                                   'unity',
-                                   key,
-                                   value)
 
         self.fuel_web.run_ostf(
             cluster_id=cluster_id)
