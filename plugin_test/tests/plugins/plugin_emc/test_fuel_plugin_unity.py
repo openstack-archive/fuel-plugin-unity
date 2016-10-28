@@ -75,33 +75,33 @@ def verify_nova_opts(nova_node, options):
 class UnityPlugin(TestBasic):
     """Unity plugin related functional tests."""
 
-    @test(depends_on=[SetupEnvironment.prepare_slaves_5],
+    @test(depends_on=[SetupEnvironment.prepare_slaves_9],
           groups=["deploy_ha_unity"])
     @log_snapshot_after_test
-    def deploy_ha_2_controller(self):
-        """Deploy cluster with 2 controllers, ceph nodes and Unity plugin
+    def deploy_ha_3_controller(self):
+        """Deploy cluster with 3 controllers, ceph nodes and Unity plugin
 
         Scenario:
             1. Upload plugin to the master node
             2. Install plugin
             3. Create cluster
-            4. Add 2 nodes with controller role
-            5. Add 2 nodes with ceph role
-            5. Add 1 node with compute role
-            6. Deploy the cluster
-            7. Run network verification
-            8. Check plugin health
-            9. Run OSTF
+            4. Add 3 nodes with controller role
+            5. Add 3 nodes with ceph role
+            6. Add 3 node with compute role
+            7. Deploy the cluster
+            8. Run network verification
+            9. Check plugin health
+            10. Run OSTF
 
         Duration 35m
-        Snapshot deploy_ha_2_controller
+        Snapshot deploy_ha_3_controller
         """
         checkers.check_plugin_path_env(
             var_name='UNITY_PLUGIN_PATH',
             plugin_path=unity_settings.UNITY_PLUGIN_PATH
         )
 
-        self.env.revert_snapshot("ready_with_5_slaves")
+        self.env.revert_snapshot("ready_with_9_slaves")
 
         # copy plugin to the master node
         checkers.check_archive_type(unity_settings.UNITY_PLUGIN_PATH)
@@ -144,15 +144,15 @@ class UnityPlugin(TestBasic):
             {
                 'slave-01': ['controller'],
                 'slave-02': ['controller'],
-                'slave-03': ['compute'],
-                'slave-04': ['ceph-osd'],
-                'slave-05': ['ceph-osd'],
+                'slave-03': ['controller'],
+                'slave-04': ['compute'],
+                'slave-05': ['compute'],
+                'slave-06': ['compute'],
+                'slave-07': ['ceph-osd'],
+                'slave-08': ['ceph-osd'],
+                'slave-09': ['ceph-osd'],
             }
         )
-        # set ceph replica to 2
-        self.fuel_web.client.update_cluster_attributes(
-            cluster_id,
-            {'editable': {'storage': {'osd_pool_size': 2}}})
         self.fuel_web.deploy_cluster_wait(cluster_id)
 
         self.fuel_web.verify_network(cluster_id)
@@ -169,13 +169,13 @@ class UnityPlugin(TestBasic):
             assert_equal(3, len(res_pgrep['stdout']),
                          'Failed with error {0}'.format(res_pgrep['stderr']))
 
-        with self.fuel_web.get_ssh_for_node('slave-03') as nova:
+        with self.fuel_web.get_ssh_for_node('slave-04') as nova:
             verify_nova_opts(nova, options)
 
         self.fuel_web.run_ostf(
             cluster_id=cluster_id)
 
-        self.env.make_snapshot("deploy_ha_2_controller")
+        self.env.make_snapshot("deploy_ha_3_controller")
 
     @test(depends_on=[SetupEnvironment.prepare_slaves_5],
           groups=["deploy_ha_unity"])
