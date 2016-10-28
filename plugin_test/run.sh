@@ -1,6 +1,9 @@
-
 #!/bin/bash
+
+# Since general public connectivity check need PUBLIC_TEST_IP for verification,
+# Please set this environment if you cannot ping the default 8.8.8.8
 export VENV_PATH="/home/jenkins/venv-nailgun-tests-2.9"
+
 # copy plugin functional tests to fuel-qa submodule
 export UNITY_SAN_IP="10.244.223.61"
 export UNITY_SAN_LOGIN="admin"
