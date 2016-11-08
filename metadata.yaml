@@ -11,9 +11,9 @@ fuel_version: ['7.0', '8.0','9.0']
 # Specify license of your plugin
 licenses: ['Apache License Version 2.0']
 # Specify author or company name
-authors: ['DELLEMC']
+authors: ['DELL']
 # A link to the plugin's page
-homepage: 'https://github.com/MRS-PartnerEcosystem/fuel-plugin-unity'
+homepage: 'https://github.com/openstack/fuel-plugin-unity'
 # Specify a group which your plugin implements, possible options:
 # network, storage, storage::cinder, storage::glance, hypervisor
 groups: ['storage::cinder']
