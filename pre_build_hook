@@ -4,3 +4,4 @@
 # like packages building, packages downloading from mirrors and so on.
 # The script should return 0 if there were no errors.
 echo "Starting Unity fuel plugin deployment..."
+echo "this is a test"
