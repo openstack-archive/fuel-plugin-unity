@@ -4,9 +4,7 @@
    contain the root `toctree` directive.
 
 Documentation for Unity Fuel lugin
-=============================================
-
-Contents:
+==================================
 
 .. toctree::
    :maxdepth: 2
