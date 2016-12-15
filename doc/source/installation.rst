@@ -1,11 +1,11 @@
 Installation Guide
 ==================
 
-Install the Unity Cinder Fuel plugin:
--------------------------------------
+Install the Unity Cinder Fuel plugin
+------------------------------------
 
 #. Download rpm from the
-   `Fuel Plugins Catalog <https://www.mirantis.com/products/openstack-drivers-and-plugins/fuel-plugins/>`_.
+   `Unlocked Partners >>EMC <https://www.mirantis.com/partners/emc/>`_.
 
 #. Copy the *rpm* file to the Fuel Master node:
    ::
