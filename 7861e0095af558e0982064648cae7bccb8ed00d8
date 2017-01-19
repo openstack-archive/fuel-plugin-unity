@@ -1,0 +1,8 @@
+Code-Review+2: Peter Wang <peter.wang13@emc.com>
+Workflow+1: Peter Wang <peter.wang13@emc.com>
+Verified+2: Jenkins
+Submitted-by: Jenkins
+Submitted-at: Thu, 19 Jan 2017 04:30:43 +0000
+Reviewed-on: https://review.openstack.org/411215
+Project: openstack/fuel-plugin-unity
+Branch: refs/heads/7.0
